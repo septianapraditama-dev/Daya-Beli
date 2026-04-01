@@ -1,0 +1,44 @@
+{
+  "feature_cols": [
+    "komoditas_enc",
+    "region_enc",
+    "day_of_week",
+    "day_of_month",
+    "month",
+    "quarter",
+    "is_weekend",
+    "week_of_year",
+    "is_holiday",
+    "days_to_holiday",
+    "days_after_holiday",
+    "lag_1d_log",
+    "lag_3d_log",
+    "lag_7d_log",
+    "lag_14d_log",
+    "ma_7_log",
+    "ma_14_log",
+    "ma_30_log",
+    "std_7_log",
+    "std_14_log",
+    "pct_change_1d",
+    "pct_change_7d",
+    "log_ump_daily",
+    "price_to_ump_ratio"
+  ],
+  "horizons": [
+    1,
+    7,
+    14,
+    21,
+    30
+  ],
+  "n_regions": 5,
+  "regions": [
+    "Jakarta Barat",
+    "Jakarta Pusat",
+    "Jakarta Selatan",
+    "Jakarta Timur",
+    "Jakarta Utara"
+  ],
+  "n_komoditas": 9
+}
