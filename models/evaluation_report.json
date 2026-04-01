@@ -1,0 +1,181 @@
+{
+  "models": [
+    {
+      "model": "Ridge Regression",
+      "MAE": 1277.5965576171875,
+      "RMSE": 2410.4842874410115,
+      "MAPE": 2.576418876647949,
+      "R2": 0.9949864149093628
+    },
+    {
+      "model": "Random Forest",
+      "MAE": 1973.6281661594792,
+      "RMSE": 3239.9216148927535,
+      "MAPE": 3.815653591621672,
+      "R2": 0.9909424953527239
+    },
+    {
+      "model": "XGBoost",
+      "MAE": 2998.427734375,
+      "RMSE": 5630.923725286998,
+      "MAPE": 5.3821587562561035,
+      "R2": 0.972641110420227
+    },
+    {
+      "model": "LightGBM",
+      "MAE": 1483.4159391660196,
+      "RMSE": 2554.536854665057,
+      "MAPE": 3.008574644898238,
+      "R2": 0.9943692803519808
+    }
+  ],
+  "best_model": {
+    "name": "Ridge Regression",
+    "key": "ridge",
+    "MAPE": 2.576418876647949
+  },
+  "inference_model": "ridge",
+  "ci_model": "ridge",
+  "ci_method": "bootstrap",
+  "multistep_model": "ridge",
+  "multi_step": {
+    "1": {
+      "model": "RIDGE t+1",
+      "MAE": 1277.5965576171875,
+      "RMSE": 2410.4842874410115,
+      "MAPE": 2.576418876647949,
+      "R2": 0.9949864149093628
+    },
+    "7": {
+      "model": "RIDGE t+7",
+      "MAE": 2992.76953125,
+      "RMSE": 4128.665644006547,
+      "MAPE": 6.605962753295898,
+      "R2": 0.9852893352508545
+    },
+    "14": {
+      "model": "RIDGE t+14",
+      "MAE": 6466.7919921875,
+      "RMSE": 8709.578635043144,
+      "MAPE": 13.886734962463379,
+      "R2": 0.9346222877502441
+    },
+    "21": {
+      "model": "RIDGE t+21",
+      "MAE": 7872.783203125,
+      "RMSE": 10785.570731305785,
+      "MAPE": 17.093507766723633,
+      "R2": 0.8994849324226379
+    },
+    "30": {
+      "model": "RIDGE t+30",
+      "MAE": 3435.051025390625,
+      "RMSE": 5280.583301113618,
+      "MAPE": 7.104413032531738,
+      "R2": 0.9758989214897156
+    }
+  },
+  "n_features": 24,
+  "feature_names": [
+    "komoditas_enc",
+    "region_enc",
+    "day_of_week",
+    "day_of_month",
+    "month",
+    "quarter",
+    "is_weekend",
+    "week_of_year",
+    "is_holiday",
+    "days_to_holiday",
+    "days_after_holiday",
+    "lag_1d_log",
+    "lag_3d_log",
+    "lag_7d_log",
+    "lag_14d_log",
+    "ma_7_log",
+    "ma_14_log",
+    "ma_30_log",
+    "std_7_log",
+    "std_14_log",
+    "pct_change_1d",
+    "pct_change_7d",
+    "log_ump_daily",
+    "price_to_ump_ratio"
+  ],
+  "horizons": [
+    1,
+    7,
+    14,
+    21,
+    30
+  ],
+  "n_regions": 5,
+  "regions": [
+    "Jakarta Barat",
+    "Jakarta Pusat",
+    "Jakarta Selatan",
+    "Jakarta Timur",
+    "Jakarta Utara"
+  ],
+  "scaler": "RobustScaler (fit on train only)",
+  "target_transform": "log1p -> expm1",
+  "split": "date-based chronological 70/15/15",
+  "split_verified": true,
+  "per_komoditas": [
+    {
+      "komoditas": "ayam_ras",
+      "MAE": 1550,
+      "MAPE": 3.66,
+      "n": 120
+    },
+    {
+      "komoditas": "bawang_merah",
+      "MAE": 1165,
+      "MAPE": 2.31,
+      "n": 120
+    },
+    {
+      "komoditas": "bawang_putih",
+      "MAE": 1028,
+      "MAPE": 2.39,
+      "n": 120
+    },
+    {
+      "komoditas": "beras_premium",
+      "MAE": 531,
+      "MAPE": 3.28,
+      "n": 120
+    },
+    {
+      "komoditas": "cabai_merah_keriting",
+      "MAE": 1856,
+      "MAPE": 2.7,
+      "n": 120
+    },
+    {
+      "komoditas": "cabai_rawit_merah",
+      "MAE": 2893,
+      "MAPE": 5.4,
+      "n": 120
+    },
+    {
+      "komoditas": "daging_sapi",
+      "MAE": 2005,
+      "MAPE": 1.46,
+      "n": 120
+    },
+    {
+      "komoditas": "gula_pasir",
+      "MAE": 214,
+      "MAPE": 1.16,
+      "n": 120
+    },
+    {
+      "komoditas": "telur_ayam",
+      "MAE": 256,
+      "MAPE": 0.84,
+      "n": 120
+    }
+  ],
+  "approach": "ML classical (no deep learning)"
+}
