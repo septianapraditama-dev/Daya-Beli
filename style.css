@@ -1,0 +1,1071 @@
+/* ============================================================
+   Prediksi Harga Pangan DKI Jakarta — Fintech AI Dashboard v4
+   Palette:
+     Primary Indigo : #6366F1
+     Accent Violet  : #8B5CF6
+     Dark Charcoal  : #111110
+     Card Dark      : #1A1918
+     Light BG       : #F7F6F3  (warm cream-neutral)
+     Card Light     : #FFFFFF
+     Text High      : #1A1917  (warm near-black)
+     Danger Red     : #DC2626
+     Success Green  : #16A34A
+     Warning Amber  : #D97706
+   ============================================================ */
+
+/* ── Font Import: DM Sans + DM Mono ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── CSS Variables: Light Mode ── */
+:root {
+    /* Brand — Indigo/Violet system (NOT red) */
+    --primary:        #6366F1;
+    --primary-hover:  #4F46E5;
+    --primary-active: #4338CA;
+    --primary-soft:   #EEF2FF;
+    --primary-mid:    #C7D2FE;
+    --accent:         #8B5CF6;
+    --accent-soft:    #F5F3FF;
+
+    /* Neutrals */
+    --bg:             #F7F6F3;
+    --surface:        #FFFFFF;
+    --surface-raised: #F2F1EE;
+    --surface-deep:   #EBEAE6;
+    --border:         #E3E1DC;
+    --border-strong:  #C7C4BC;
+
+    /* Text — WCAG AA compliant ratios */
+    --text-primary:   #1A1917;
+    --text-secondary: #3D3B37;
+    --text-tertiary:  #706D67;
+    --text-muted:     #9C9891;
+
+    /* Semantic */
+    --success:        #16A34A;
+    --success-bg:     #F0FDF4;
+    --success-border: #BBF7D0;
+    --warning:        #D97706;
+    --warning-bg:     #FFFBEB;
+    --warning-border: #FDE68A;
+    --danger:         #DC2626;
+    --danger-bg:      #FEF2F2;
+    --danger-border:  #FECACA;
+    --info:           #2563EB;
+    --info-bg:        #EFF6FF;
+    --info-border:    #BFDBFE;
+
+    /* Shadows */
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.09), 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 28px rgba(0,0,0,0.16), 0 4px 8px rgba(0,0,0,0.08);
+
+    /* Radius */
+    --radius-sm:  8px;
+    --radius-md:  12px;
+    --radius-lg:  16px;
+    --radius-xl:  20px;
+    --radius-pill: 999px;
+
+    /* Transitions */
+    --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Dark Mode Override ── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg:             #111110;
+        --surface:        #1A1918;
+        --surface-raised: #212120;
+        --surface-deep:   #272624;
+        --border:         #302F2C;
+        --border-strong:  #454340;
+
+        --text-primary:   #EEECEA;
+        --text-secondary: #BDBAB4;
+        --text-tertiary:  #8A8780;
+        --text-muted:     #57544E;
+
+        --primary-soft:   rgba(99,102,241,0.14);
+        --primary-mid:    rgba(99,102,241,0.32);
+        --accent-soft:    rgba(139,92,246,0.14);
+        --success-bg:     rgba(22,163,74,0.13);
+        --success-border: rgba(22,163,74,0.32);
+        --warning-bg:     rgba(217,119,6,0.13);
+        --warning-border: rgba(217,119,6,0.32);
+        --danger-bg:      rgba(220,38,38,0.13);
+        --danger-border:  rgba(220,38,38,0.32);
+        --info-bg:        rgba(37,99,235,0.13);
+        --info-border:    rgba(37,99,235,0.32);
+
+        --shadow-xs: 0 1px 2px rgba(0,0,0,0.45);
+        --shadow-sm: 0 1px 4px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.30);
+        --shadow-md: 0 4px 14px rgba(0,0,0,0.60), 0 2px 4px rgba(0,0,0,0.35);
+        --shadow-lg: 0 8px 28px rgba(0,0,0,0.70), 0 4px 8px rgba(0,0,0,0.40);
+    }
+}
+
+
+/* ══════════════════════════════════════════
+   BASE & TYPOGRAPHY
+══════════════════════════════════════════ */
+html, body, [class*="css"] {
+    font-family: 'DM Sans', 'SF Pro Display', -apple-system, system-ui, sans-serif !important;
+    color: var(--text-primary) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
+}
+
+.stApp {
+    background-color: var(--bg) !important;
+}
+
+.block-container {
+    padding-top: 2.25rem !important;
+    padding-bottom: 3.5rem !important;
+    max-width: 1320px !important;
+}
+
+/* ── Headings ── */
+h1 {
+    color: var(--text-primary) !important;
+    font-weight: 800 !important;
+    font-size: 1.90rem !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1.15 !important;
+}
+
+h2 {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    letter-spacing: -0.025em !important;
+}
+
+h3 {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: -0.015em !important;
+}
+
+[data-testid="stHeading"] {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+}
+
+p {
+    color: var(--text-secondary) !important;
+    line-height: 1.72 !important;
+    font-size: 0.92rem !important;
+}
+
+hr {
+    border: none !important;
+    border-top: 1px solid var(--border) !important;
+    margin: 28px 0 !important;
+}
+
+
+/* ══════════════════════════════════════════
+   SIDEBAR — Fintech Dark Nav
+══════════════════════════════════════════ */
+section[data-testid="stSidebar"] {
+    background: #111110 !important;
+    border-right: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    section[data-testid="stSidebar"] {
+        background: #0C0C0B !important;
+        border-right: 1px solid rgba(255,255,255,0.06) !important;
+    }
+}
+
+section[data-testid="stSidebar"] > div {
+    padding: 1.75rem 1.35rem !important;
+}
+
+section[data-testid="stSidebar"],
+section[data-testid="stSidebar"] * {
+    color: #D8D5CF !important;
+}
+
+/* App title in sidebar */
+section[data-testid="stSidebar"] h1 {
+    color: #FFFFFF !important;
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.03em !important;
+    margin-bottom: 0 !important;
+}
+
+/* Section labels — HIGH contrast (was ~40%, now ~88%) */
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: rgba(215,210,202,0.88) !important;
+    font-size: 0.67rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.13em !important;
+    margin-bottom: 7px !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox label,
+section[data-testid="stSidebar"] .stNumberInput label {
+    color: rgba(215,210,202,0.80) !important;
+    font-size: 0.67rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.11em !important;
+    font-weight: 700 !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div > div,
+section[data-testid="stSidebar"] .stNumberInput > div > div > input {
+    background: rgba(99,102,241,0.09) !important;
+    border: 1px solid rgba(99,102,241,0.28) !important;
+    color: #FFFFFF !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 0.91rem !important;
+    font-weight: 500 !important;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div > div:hover,
+section[data-testid="stSidebar"] .stNumberInput > div > div > input:hover {
+    border-color: rgba(99,102,241,0.60) !important;
+    background: rgba(99,102,241,0.14) !important;
+}
+
+section[data-testid="stSidebar"] .stSelectbox > div > div:focus-within,
+section[data-testid="stSidebar"] .stNumberInput > div > div > input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.28) !important;
+}
+
+section[data-testid="stSidebar"] hr {
+    border: none !important;
+    border-top: 1px solid rgba(99,102,241,0.16) !important;
+    margin: 18px 0 !important;
+}
+
+/* Caption / helper text — HIGH contrast (was ~38%, now ~80%) */
+section[data-testid="stSidebar"] .stCaption,
+section[data-testid="stSidebar"] small,
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] * {
+    color: rgba(210,205,196,0.82) !important;
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+}
+
+section[data-testid="stSidebar"] .stCaption strong,
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] strong {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+
+/* Number input +/- buttons */
+section[data-testid="stSidebar"] .stNumberInput button {
+    background: rgba(99,102,241,0.12) !important;
+    border-color: rgba(99,102,241,0.28) !important;
+    color: #D5D6F0 !important;
+}
+
+section[data-testid="stSidebar"] .stNumberInput button:hover {
+    background: rgba(99,102,241,0.28) !important;
+    color: #FFFFFF !important;
+}
+
+
+/* ══════════════════════════════════════════
+   GAJI CARD (sidebar)
+══════════════════════════════════════════ */
+.gaji-card {
+    background: linear-gradient(135deg, rgba(99,102,241,0.22), rgba(139,92,246,0.14));
+    border: 1px solid rgba(99,102,241,0.38);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gaji-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366F1, #8B5CF6);
+}
+
+.gaji-card .gaji-label {
+    font-size: 9.5px;
+    color: rgba(185,186,240,0.92);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.gaji-card .gaji-value {
+    font-size: 1.40rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+.gaji-card .gaji-sub {
+    font-size: 10.5px;
+    color: rgba(190,192,235,0.74);
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+
+/* ══════════════════════════════════════════
+   METRIC CARDS
+══════════════════════════════════════════ */
+[data-testid="stMetric"] {
+    background: var(--surface) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 22px 24px 20px 24px !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+[data-testid="stMetric"]::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+[data-testid="stMetric"]:hover {
+    box-shadow: var(--shadow-md) !important;
+    transform: translateY(-2px);
+}
+
+[data-testid="stMetricLabel"] > div {
+    font-size: 0.68rem !important;
+    color: var(--text-tertiary) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.10em !important;
+    font-family: 'DM Sans', sans-serif !important;
+    margin-bottom: 4px !important;
+}
+
+[data-testid="stMetricValue"] > div {
+    font-size: 1.60rem !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.035em !important;
+    font-family: 'DM Sans', sans-serif !important;
+    line-height: 1.15 !important;
+}
+
+[data-testid="stMetricDelta"] > div {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    margin-top: 4px !important;
+}
+
+
+/* ══════════════════════════════════════════
+   RISK BADGE
+══════════════════════════════════════════ */
+.risk-badge {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px 22px 28px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.risk-badge .risk-label {
+    font-size: 0.67rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.risk-badge .risk-value {
+    font-size: 1.50rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0 0 8px;
+}
+
+.risk-badge .risk-sub {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+
+/* ══════════════════════════════════════════
+   INFO BOX — High contrast both modes
+══════════════════════════════════════════ */
+.info-box {
+    background: var(--surface-deep);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+
+@media (prefers-color-scheme: dark) {
+    .info-box {
+        background: rgba(99,102,241,0.08);
+        border-color: rgba(99,102,241,0.22);
+        border-left-color: var(--primary);
+        color: #C0C2E0;
+    }
+}
+
+.info-box strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+
+/* ══════════════════════════════════════════
+   TABS
+══════════════════════════════════════════ */
+[data-testid="stTabs"] {
+    background: transparent;
+    border-bottom: 2px solid var(--border);
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+[data-testid="stTabs"] button {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.87rem !important;
+    font-weight: 600 !important;
+    color: var(--text-tertiary) !important;
+    padding: 11px 18px !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    border-bottom: 2px solid transparent !important;
+    transition: color var(--transition), border-color var(--transition), background var(--transition) !important;
+    letter-spacing: -0.01em;
+    margin-bottom: -2px;
+}
+
+[data-testid="stTabs"] button:hover {
+    color: var(--text-primary) !important;
+    background: var(--primary-soft) !important;
+}
+
+[data-testid="stTabs"] button[aria-selected="true"] {
+    color: var(--primary) !important;
+    border-bottom: 2px solid var(--primary) !important;
+    background: transparent !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stTabPanel"] {
+    padding-top: 22px !important;
+}
+
+
+/* ══════════════════════════════════════════
+   PRIMARY BUTTON — Indigo gradient (high visibility CTA)
+══════════════════════════════════════════ */
+.stButton > button[kind="primary"],
+.stButton > button[data-testid="baseButton-primary"] {
+    background: linear-gradient(135deg, #6366F1, #8B5CF6) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.96rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    padding: 13px 24px !important;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.38), 0 1px 3px rgba(99,102,241,0.28) !important;
+    transition: all var(--transition) !important;
+    cursor: pointer;
+    min-height: 48px !important;
+}
+
+.stButton > button[kind="primary"]:hover,
+.stButton > button[data-testid="baseButton-primary"]:hover {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED) !important;
+    box-shadow: 0 6px 22px rgba(99,102,241,0.48), 0 2px 6px rgba(99,102,241,0.32) !important;
+    transform: translateY(-2px);
+}
+
+.stButton > button[kind="primary"]:active,
+.stButton > button[data-testid="baseButton-primary"]:active {
+    transform: translateY(0);
+    background: linear-gradient(135deg, #4338CA, #6D28D9) !important;
+    box-shadow: 0 1px 4px rgba(99,102,241,0.32) !important;
+}
+
+.stButton > button[kind="primary"]:focus-visible,
+.stButton > button[data-testid="baseButton-primary"]:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.40) !important;
+}
+
+/* Secondary Button */
+.stButton > button[kind="secondary"],
+.stButton > button[data-testid="baseButton-secondary"],
+.stButton > button:not([kind="primary"]) {
+    background: var(--surface) !important;
+    color: var(--text-primary) !important;
+    border: 1.5px solid var(--border-strong) !important;
+    border-radius: var(--radius-md) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    padding: 10px 20px !important;
+    box-shadow: var(--shadow-xs) !important;
+    transition: all var(--transition) !important;
+    min-height: 40px !important;
+}
+
+.stButton > button[kind="secondary"]:hover,
+.stButton > button:not([kind="primary"]):hover {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    background: var(--primary-soft) !important;
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.12) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   INPUTS & SELECTS (Main Content)
+══════════════════════════════════════════ */
+.stSelectbox > div > div,
+.stNumberInput > div > div > input,
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    border: 1.5px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.90rem !important;
+    color: var(--text-primary) !important;
+    background: var(--surface) !important;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.stSelectbox > div > div:hover,
+.stNumberInput > div > div > input:hover {
+    border-color: var(--primary) !important;
+}
+
+.stSelectbox > div > div:focus-within,
+.stNumberInput > div > div > input:focus,
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15) !important;
+    outline: none !important;
+}
+
+.stSelectbox label,
+.stNumberInput label,
+.stTextInput label,
+.stTextArea label {
+    font-size: 0.73rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.09em !important;
+    color: var(--text-tertiary) !important;
+    margin-bottom: 7px !important;
+}
+
+.stNumberInput button {
+    background: var(--surface-raised) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-secondary) !important;
+    border-radius: var(--radius-sm) !important;
+    transition: all var(--transition) !important;
+}
+
+.stNumberInput button:hover {
+    background: var(--primary-soft) !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   DATAFRAME / TABLE
+══════════════════════════════════════════ */
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md) !important;
+    overflow: hidden !important;
+    box-shadow: var(--shadow-xs) !important;
+}
+
+[data-testid="stDataFrame"] thead th {
+    background: var(--surface-raised) !important;
+    color: var(--text-secondary) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.70rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.09em !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 11px 14px !important;
+}
+
+[data-testid="stDataFrame"] tbody tr {
+    transition: background var(--transition);
+    border-bottom: 1px solid var(--border) !important;
+}
+
+[data-testid="stDataFrame"] tbody tr:hover {
+    background: var(--primary-soft) !important;
+}
+
+[data-testid="stDataFrame"] tbody td {
+    font-family: 'DM Mono', monospace !important;
+    font-size: 0.84rem !important;
+    color: var(--text-primary) !important;
+    padding: 10px 14px !important;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* ══════════════════════════════════════════
+   PREDICTION DAY CARDS
+══════════════════════════════════════════ */
+.pred-day-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: var(--shadow-xs);
+    margin-bottom: 10px;
+    transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.pred-day-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-slow);
+}
+
+.pred-day-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.pred-day-card:hover::before {
+    transform: scaleX(1);
+}
+
+.pred-day-card .day-label {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+}
+
+.pred-day-card .day-date {
+    font-size: 0.77rem;
+    color: var(--text-tertiary);
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+.pred-day-card .day-price {
+    font-size: 1.06rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    margin: 7px 0;
+    font-variant-numeric: tabular-nums;
+    font-family: 'DM Mono', monospace;
+}
+
+.pred-day-card .day-status-ok {
+    font-size: 0.66rem;
+    font-weight: 700;
+    color: var(--success);
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    margin-top: 6px;
+    display: inline-block;
+    letter-spacing: 0.02em;
+}
+
+.pred-day-card .day-status-warn {
+    font-size: 0.66rem;
+    font-weight: 700;
+    color: var(--danger);
+    background: var(--danger-bg);
+    border: 1px solid var(--danger-border);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    margin-top: 6px;
+    display: inline-block;
+    letter-spacing: 0.02em;
+}
+
+
+/* ══════════════════════════════════════════
+   EXPANDER
+══════════════════════════════════════════ */
+[data-testid="stExpander"] {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-xs) !important;
+    overflow: hidden;
+    transition: box-shadow var(--transition);
+}
+
+[data-testid="stExpander"]:hover {
+    box-shadow: var(--shadow-sm) !important;
+}
+
+[data-testid="stExpander"] details summary {
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.90rem !important;
+    color: var(--text-primary) !important;
+    padding: 15px 18px !important;
+    transition: background var(--transition), color var(--transition);
+}
+
+[data-testid="stExpander"] details summary:hover {
+    background: var(--primary-soft) !important;
+    color: var(--primary) !important;
+}
+
+[data-testid="stExpander"] details summary svg {
+    color: var(--primary) !important;
+    fill: var(--primary) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   ALERTS
+══════════════════════════════════════════ */
+[data-testid="stAlert"],
+div[data-testid="stSuccess"],
+div[data-testid="stWarning"],
+div[data-testid="stError"],
+div[data-testid="stInfo"] {
+    border-radius: var(--radius-md) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+    padding: 14px 18px !important;
+    line-height: 1.60 !important;
+    border: 1px solid transparent !important;
+}
+
+div[data-testid="stSuccess"] {
+    background: var(--success-bg) !important;
+    border-color: var(--success-border) !important;
+    color: #14532D !important;
+}
+
+div[data-testid="stWarning"] {
+    background: var(--warning-bg) !important;
+    border-color: var(--warning-border) !important;
+    color: #78350F !important;
+}
+
+div[data-testid="stError"] {
+    background: var(--danger-bg) !important;
+    border-color: var(--danger-border) !important;
+    color: #7F1D1D !important;
+}
+
+div[data-testid="stInfo"] {
+    background: var(--info-bg) !important;
+    border-color: var(--info-border) !important;
+    color: #1E3A5F !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    div[data-testid="stSuccess"] { color: #86EFAC !important; }
+    div[data-testid="stWarning"] { color: #FCD34D !important; }
+    div[data-testid="stError"]   { color: #FCA5A5 !important; }
+    div[data-testid="stInfo"]    { color: #93C5FD !important; }
+}
+
+
+/* ══════════════════════════════════════════
+   RADIO BUTTONS
+══════════════════════════════════════════ */
+[data-testid="stRadio"] label {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.90rem !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+}
+
+[data-testid="stRadio"] [data-baseweb="radio"] span:first-child {
+    border-color: var(--border-strong) !important;
+    transition: border-color var(--transition);
+}
+
+[data-testid="stRadio"] [data-baseweb="radio"]:hover span:first-child {
+    border-color: var(--primary) !important;
+}
+
+[data-testid="stRadio"] [data-baseweb="radio"] [aria-checked="true"] span:first-child {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   SPINNER
+══════════════════════════════════════════ */
+[data-testid="stSpinner"] {
+    color: var(--primary) !important;
+}
+
+
+/* ══════════════════════════════════════════
+   SECTION CARD WRAPPER
+══════════════════════════════════════════ */
+.section-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 18px;
+}
+
+
+/* ══════════════════════════════════════════
+   LEGEND ROW
+══════════════════════════════════════════ */
+.legend-row {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    font-size: 0.80rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    align-items: center;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+
+/* ══════════════════════════════════════════
+   PLOTLY CHART CONTAINER
+══════════════════════════════════════════ */
+[data-testid="stPlotlyChart"] {
+    background: var(--surface) !important;
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-sm) !important;
+    padding: 4px !important;
+    overflow: hidden !important;
+}
+
+
+/* ══════════════════════════════════════════
+   BADGE PILLS
+══════════════════════════════════════════ */
+.badge-primary {
+    display: inline-flex;
+    align-items: center;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 0.70rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--primary-mid);
+    letter-spacing: 0.03em;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.badge-neutral {
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface-raised);
+    color: var(--text-secondary);
+    font-size: 0.70rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    letter-spacing: 0.03em;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.badge-red { background: var(--danger-bg); color: var(--danger); border-color: var(--danger-border); }
+.badge-orange { background: var(--warning-bg); color: var(--warning); border-color: var(--warning-border); }
+
+
+/* ══════════════════════════════════════════
+   CAPTION & SMALL TEXT
+══════════════════════════════════════════ */
+.stCaption,
+small,
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] * {
+    color: var(--text-tertiary) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.78rem !important;
+    line-height: 1.55 !important;
+}
+
+[data-testid="stCaptionContainer"] strong {
+    color: var(--text-secondary) !important;
+    font-weight: 700 !important;
+}
+
+
+/* ══════════════════════════════════════════
+   MARKDOWN CONTENT
+══════════════════════════════════════════ */
+[data-testid="stMarkdownContainer"] h3,
+[data-testid="stMarkdownContainer"] h4 {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.6em !important;
+}
+
+[data-testid="stMarkdownContainer"] blockquote {
+    border-left: 3px solid var(--primary) !important;
+    background: var(--primary-soft) !important;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0 !important;
+    padding: 12px 16px !important;
+    margin: 14px 0 !important;
+    color: var(--text-primary) !important;
+    font-size: 0.90rem !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    [data-testid="stMarkdownContainer"] blockquote {
+        background: rgba(99,102,241,0.11) !important;
+        color: var(--text-primary) !important;
+    }
+}
+
+[data-testid="stMarkdownContainer"] strong {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stMarkdownContainer"] ul,
+[data-testid="stMarkdownContainer"] ol {
+    color: var(--text-secondary) !important;
+    font-size: 0.90rem !important;
+    line-height: 1.80 !important;
+}
+
+[data-testid="stMarkdownContainer"] hr {
+    border-color: var(--border) !important;
+    margin: 20px 0 !important;
+}
+
+[data-testid="stMarkdownContainer"] code {
+    background: var(--surface-raised) !important;
+    color: var(--primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 4px !important;
+    padding: 1px 6px !important;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 0.83em !important;
+}
+
+
+/* ══════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    h1 { font-size: 1.45rem !important; }
+    .block-container { padding: 1.25rem !important; }
+    [data-testid="stMetricValue"] > div { font-size: 1.25rem !important; }
+    .legend-row { gap: 10px; }
+    .pred-day-card .day-price { font-size: 0.94rem; }
+    [data-testid="stTabs"] button { font-size: 0.80rem !important; padding: 8px 12px !important; }
+    .gaji-card .gaji-value { font-size: 1.18rem; }
+}
+
+
+/* ══════════════════════════════════════════
+   FOCUS ACCESSIBILITY — WCAG 2.1 AA
+══════════════════════════════════════════ */
+*:focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.20) !important;
+}
